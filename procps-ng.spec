@@ -1,16 +1,12 @@
-%define major_version	3
-%define minor_version	3
-%define revision	3
-
-%define major 0
-%define libname %mklibname procps %{major}
-%define develname %mklibname procps -d
+%define	major	0
+%define	libname	%mklibname procps %{major}
+%define	devname	%mklibname procps -d
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
-Version:	%{major_version}.%{minor_version}.%{revision}
+Version:	3.3.3
 Release:	2
-License:	GPL
+License:	GPLv2+
 Group:		Monitoring
 URL:		http://gitorious.org/procps
 Source0:	http://gitorious.org/procps/procps/archive-tarball/v%{version}/%{name}-%{version}.tar.gz
@@ -19,29 +15,30 @@ BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
-#BuildRequires:	ncursesw-devel
-Provides:	procps3
-Obsoletes:	procps3 < 3.3.3
+%rename		procps3
 %rename		procps
 
 %description
 The procps package contains a set of system utilities
 which provide system information.
 
-%package -n %{libname}
+%package -n	%{libname}
 Summary:	Main libary for %{name}
 Group:		System/Libraries
+License:	LGPLv2+
 Requires:	%{name} = %{version}-%{release}
 
-%description -n %{libname}
+
+%description -n	%{libname}
 Main library for %{name}.
 
-%package -n %{develname}
+%package -n	%{devname}
 Summary:	Development files for %{name}
 Group:		Development/C
+License:	LGPLv2+
 Requires:	%{libname} = %{version}-%{release}
 
-%description -n %{develname}
+%description -n	%{devname}
 Development headers and library for the %{name} library.
 
 %prep
@@ -94,7 +91,7 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 %files -n %{libname}
 /%{_lib}/libprocps.so.%{major}*
 
-%files -n %{develname}
+%files -n %{devname}
 %dir %{_includedir}/proc
 %{_includedir}/proc/*.h
 %{_libdir}/libprocps.so
