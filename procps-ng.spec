@@ -14,7 +14,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
-BuildRequires:	pkgconfig(ncurses)
+BuildRequires:	pkgconfig(ncursesw)
 %rename		procps3
 %rename		procps
 
