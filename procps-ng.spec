@@ -13,7 +13,7 @@ Release:	1
 License:	GPL
 Group:		Monitoring
 URL:		http://gitorious.org/procps
-Source:		http://gitorious.org/procps/procps/archive-tarball/v%{version}/%{name}-%{version}.tar.gz
+Source0:	http://gitorious.org/procps/procps/archive-tarball/v%{version}/%{name}-%{version}.tar.gz
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -24,8 +24,6 @@ Provides:	libproc.so.%{major_version}.%{minor_version}
 Provides:	procps3
 Obsoletes:	procps3 < 3.3.3
 %rename		procps
-# /bin/rm
-Requires(post):	coreutils
 
 %description
 The procps package contains a set of system utilities
