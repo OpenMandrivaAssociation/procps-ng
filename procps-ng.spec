@@ -54,7 +54,6 @@ sed -e 's#${exec_prefix}/usr/bin#${bindir}#' -i configure.ac
 %build
 %configure2_5x \
 	--sbindir=/sbin \
-	--libdir=/%{_lib} \
 	--disable-rpath \
 	--disable-static \
 	--disable-watch8bit \
@@ -65,19 +64,12 @@ sed -e 's#${exec_prefix}/usr/bin#${bindir}#' -i configure.ac
 %install
 %makeinstall_std
 
-# (tpg) move some binaries and provide compat symlinks
-mkdir -p %{buildroot}/{/bin,%{_libdir},%{_libdir}/pkgconfig}
-
+mkdir %{buildroot}/{bin,%{_lib}}
 mv %{buildroot}%{_bindir}/free %{buildroot}/bin
 mv %{buildroot}%{_bindir}/ps %{buildroot}/bin
-mv %{buildroot}/%{_lib}/pkgconfig/libprocps.pc %{buildroot}%{_libdir}/pkgconfig
 
-ln -s ../../bin/free %{buildroot}%{_bindir}/free
-ln -s ../../%{_lib}/libprocps.so %{buildroot}%{_libdir}/libprocps.so
-ln -s ../../%{_lib}/libprocps.so.%{major} %{buildroot}%{_libdir}/libprocps.so.%{major}
-
-# get rid of this
-rm -rf %{buildroot}/share/doc/%{name}
+mv %{buildroot}%{_libdir}/libprocps.so.%{major}* %{buildroot}/%{_lib}
+ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/libprocps.so
 
 %files
 %doc NEWS AUTHORS
@@ -85,7 +77,6 @@ rm -rf %{buildroot}/share/doc/%{name}
 /bin/ps
 /bin/free
 /sbin/sysctl
-%{_bindir}/free
 %{_bindir}/pgrep
 %{_bindir}/pmap
 %{_bindir}/pwdx
@@ -103,11 +94,9 @@ rm -rf %{buildroot}/share/doc/%{name}
 
 %files -n %{libname}
 /%{_lib}/libprocps.so.%{major}*
-%{_libdir}/libprocps.so.%{major}*
 
 %files -n %{develname}
 %dir %{_includedir}/proc
 %{_includedir}/proc/*.h
-/%{_lib}/libprocps.so
 %{_libdir}/libprocps.so
 %{_libdir}/pkgconfig/libprocps.pc
