@@ -47,14 +47,12 @@ Development headers and library for the %{name} library.
 
 %prep
 %setup -q -n procps-procps
-
-%build
-sed -i -e 's#${exec_prefix}/usr/bin#${bindir}#' configure.ac
+sed -e 's#${exec_prefix}/usr/bin#${bindir}#' -i configure.ac
 
 ./autogen.sh
 
+%build
 %configure2_5x \
-	--prefix=/ \
 	--sbindir=/sbin \
 	--libdir=/%{_lib} \
 	--disable-rpath \
