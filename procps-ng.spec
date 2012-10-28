@@ -9,7 +9,7 @@
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	%{major_version}.%{minor_version}.%{revision}
-Release:	1
+Release:	2
 License:	GPL
 Group:		Monitoring
 URL:		http://gitorious.org/procps
@@ -20,7 +20,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 #BuildRequires:	ncursesw-devel
-Provides:	libproc.so.%{major_version}.%{minor_version}
 Provides:	procps3
 Obsoletes:	procps3 < 3.3.3
 %rename		procps
