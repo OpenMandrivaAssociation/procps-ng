@@ -5,7 +5,7 @@
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.4
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Monitoring
 URL:		http://gitorious.org/procps
