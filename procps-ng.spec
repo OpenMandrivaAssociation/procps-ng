@@ -1,11 +1,11 @@
-%define	major 1
+%define	major	1
 %define	libname	%mklibname procps %{major}
 %define	devname	%mklibname procps -d
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.6
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Monitoring
 URL:		http://gitorious.org/procps
@@ -26,8 +26,6 @@ which provide system information.
 Summary:	Main libary for %{name}
 Group:		System/Libraries
 License:	LGPLv2+
-Requires:	%{name} = %{version}-%{release}
-
 
 %description -n	%{libname}
 Main library for %{name}.
