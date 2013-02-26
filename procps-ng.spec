@@ -5,7 +5,7 @@
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.6
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Monitoring
 URL:		http://gitorious.org/procps
@@ -26,6 +26,7 @@ which provide system information.
 Summary:	Main libary for %{name}
 Group:		System/Libraries
 License:	LGPLv2+
+Obsoletes:	%{mklibname procps 0} < 3.3.6
 
 %description -n	%{libname}
 Main library for %{name}.
