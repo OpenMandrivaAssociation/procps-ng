@@ -1,6 +1,7 @@
 %define	major	1
 %define	libname	%mklibname procps %{major}
 %define	devname	%mklibname procps -d
+%bcond_with	crosscompile
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
@@ -47,6 +48,10 @@ sed -e 's#${exec_prefix}/usr/bin#${bindir}#' -i configure.ac
 ./autogen.sh
 
 %build
+%if %{with crosscompile}
+export ac_cv_func_malloc_0_nonnull=yes
+export ac_cv_func_realloc_0_nonnull=yes
+%endif
 %configure2_5x \
 	--sbindir=/sbin \
 	--disable-rpath \
