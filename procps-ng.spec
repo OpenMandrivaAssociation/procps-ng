@@ -1,6 +1,6 @@
-%define	major	1
-%define	libname	%mklibname procps %{major}
-%define	devname	%mklibname procps -d
+%define major 1
+%define libname %mklibname procps %{major}
+%define devname %mklibname procps -d
 %bcond_with	crosscompile
 
 Summary:	Utilities for monitoring your system and processes on your system
@@ -59,7 +59,7 @@ export ac_cv_func_realloc_0_nonnull=yes
 	--disable-rpath \
 	--disable-static \
 	--disable-watch8bit \
-	--disable-kill \ 
+	--disable-kill \
     --with-systemd
 
 %make
