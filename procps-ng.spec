@@ -5,17 +5,19 @@
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
-Version:	3.3.6
-Release:	4
+Version:	3.3.8
+Release:	1
 License:	GPLv2+
 Group:		Monitoring
 URL:		http://gitorious.org/procps
-Source0:	http://gitorious.org/procps/procps/archive-tarball/v%{version}/%{name}-%{version}.tar.gz
+Source0:	http://gitorious.org/procps/procps/archive-tarball/v%{version}/procps-procps-v%{version}.tar.gz
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(ncursesw)
+BuildRequires:	pkgconfig(systemd)
+Requires:	systemd-units
 %rename		procps3
 %rename		procps
 
@@ -57,7 +59,8 @@ export ac_cv_func_realloc_0_nonnull=yes
 	--disable-rpath \
 	--disable-static \
 	--disable-watch8bit \
-	--disable-kill
+	--disable-kill \ 
+    --with-systemd
 
 %make
 
