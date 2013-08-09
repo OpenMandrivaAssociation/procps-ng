@@ -16,7 +16,7 @@ BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(ncursesw)
-BuildRequires:	pkgconfig(systemd)
+BuildRequires:	pkgconfig(libsystemd-login)
 Requires:	systemd-units
 %rename		procps3
 %rename		procps
