@@ -6,11 +6,11 @@
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.8
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Monitoring
-URL:		http://gitorious.org/procps
-Source0:	http://gitorious.org/procps/procps/archive-tarball/v%{version}/procps-procps-v%{version}.tar.gz
+URL:		http://sourceforge.net/projects/procps-ng/
+Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{vesion}.tar.xz
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -44,16 +44,17 @@ Requires:	%{libname} = %{version}-%{release}
 Development headers and library for the %{name} library.
 
 %prep
-%setup -q -n procps-procps
+%setup -q
 sed -e 's#${exec_prefix}/usr/bin#${bindir}#' -i configure.ac
-
-./autogen.sh
 
 %build
 %if %{with crosscompile}
 export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_realloc_0_nonnull=yes
 %endif
+
+./autogen.sh
+
 %configure2_5x \
 	--sbindir=/sbin \
 	--disable-rpath \
