@@ -10,7 +10,7 @@ Release:	3
 License:	GPLv2+
 Group:		Monitoring
 URL:		http://sourceforge.net/projects/procps-ng/
-Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{vesion}.tar.xz
+Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{version}.tar.xz
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
