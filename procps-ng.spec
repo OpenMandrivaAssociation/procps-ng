@@ -9,12 +9,10 @@ Version:	3.3.8
 Release:	3
 License:	GPLv2+
 Group:		Monitoring
-URL:		http://sourceforge.net/projects/procps-ng/
+Url:		http://sourceforge.net/projects/procps-ng/
 Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{version}.tar.xz
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	gettext-devel
 BuildRequires:	libtool
+BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(libsystemd-login)
 Requires:	systemd-units
@@ -29,7 +27,6 @@ which provide system information.
 Summary:	Main libary for %{name}
 Group:		System/Libraries
 License:	LGPLv2+
-Obsoletes:	%{mklibname procps 0} < 3.3.6
 
 %description -n	%{libname}
 Main library for %{name}.
@@ -46,6 +43,7 @@ Development headers and library for the %{name} library.
 %prep
 %setup -q
 sed -e 's#${exec_prefix}/usr/bin#${bindir}#' -i configure.ac
+autoreconf -fiv
 
 %build
 %if %{with crosscompile}
@@ -53,15 +51,12 @@ export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_realloc_0_nonnull=yes
 %endif
 
-autoreconf -fiv
-
 %configure2_5x \
 	--sbindir=/sbin \
-	--disable-rpath \
 	--disable-static \
 	--disable-watch8bit \
 	--disable-kill \
-    --with-systemd
+	--with-systemd
 
 %make
 
@@ -104,3 +99,4 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 %{_includedir}/proc/*.h
 %{_libdir}/libprocps.so
 %{_libdir}/pkgconfig/libprocps.pc
+
