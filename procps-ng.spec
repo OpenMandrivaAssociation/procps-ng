@@ -5,8 +5,8 @@
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
-Version:	3.3.8
-Release:	7
+Version:	3.3.9
+Release:	1
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
@@ -54,7 +54,7 @@ export ac_cv_func_realloc_0_nonnull=yes
 %configure2_5x \
 	--sbindir=/sbin \
 	--disable-static \
-	--disable-watch8bit \
+	--enable-watch8bit \
 	--disable-kill \
 	--with-systemd
 
