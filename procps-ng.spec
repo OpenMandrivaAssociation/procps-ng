@@ -1,4 +1,4 @@
-%define major 1
+%define major 3
 %define libname %mklibname procps %{major}
 %define devname %mklibname procps -d
 %bcond_with	crosscompile
