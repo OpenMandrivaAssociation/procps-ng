@@ -16,8 +16,10 @@ BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(libsystemd-login)
 Requires:	systemd-units
+%rename		sysvinit-tools	
 %rename		procps3
 %rename		procps
+
 
 %description
 The procps package contains a set of system utilities
@@ -63,9 +65,10 @@ export ac_cv_func_realloc_0_nonnull=yes
 %install
 %makeinstall_std
 
-mkdir %{buildroot}/{bin,%{_lib}}
+mkdir %{buildroot}/{bin,sbin,%{_lib}}
 mv %{buildroot}%{_bindir}/free %{buildroot}/bin
 mv %{buildroot}%{_bindir}/ps %{buildroot}/bin
+mv %{buildroot}%{_bindir}/pidof %{buildroot}/sbin
 
 mv %{buildroot}%{_libdir}/libprocps.so.%{major}* %{buildroot}/%{_lib}
 ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/libprocps.so
@@ -76,6 +79,7 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 /bin/ps
 /bin/free
 /sbin/sysctl
+/sbin/pidof
 %{_bindir}/pgrep
 %{_bindir}/pmap
 %{_bindir}/pwdx
