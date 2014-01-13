@@ -65,7 +65,7 @@ export ac_cv_func_realloc_0_nonnull=yes
 %install
 %makeinstall_std
 
-mkdir %{buildroot}/{bin,sbin,%{_lib}}
+mkdir %{buildroot}/{bin,%{_lib}}
 mv %{buildroot}%{_bindir}/free %{buildroot}/bin
 mv %{buildroot}%{_bindir}/ps %{buildroot}/bin
 mv %{buildroot}%{_bindir}/pidof %{buildroot}/sbin
