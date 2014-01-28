@@ -6,7 +6,7 @@
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.9
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
@@ -68,7 +68,8 @@ export ac_cv_func_realloc_0_nonnull=yes
 mkdir %{buildroot}/{bin,%{_lib}}
 mv %{buildroot}%{_bindir}/free %{buildroot}/bin
 mv %{buildroot}%{_bindir}/ps %{buildroot}/bin
-mv %{buildroot}%{_bindir}/pidof %{buildroot}/sbin
+mv %{buildroot}%{_bindir}/pidof %{buildroot}/bin
+ln -s /bin/pidof %{buildroot}/sbin
 
 mv %{buildroot}%{_libdir}/libprocps.so.%{major}* %{buildroot}/%{_lib}
 ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/libprocps.so
@@ -76,10 +77,11 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 %files
 %doc NEWS AUTHORS
 %doc top/README.top Documentation/FAQ Documentation/BUGS
-/bin/ps
 /bin/free
-/sbin/sysctl
+/bin/pidof
+/bin/ps
 /sbin/pidof
+/sbin/sysctl
 %{_bindir}/pgrep
 %{_bindir}/pmap
 %{_bindir}/pwdx
