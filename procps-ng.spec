@@ -6,7 +6,7 @@
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.8
-Release:	7
+Release:	8
 License:	GPLv2+
 Group:		Monitoring
 URL:		http://sourceforge.net/projects/procps-ng/
