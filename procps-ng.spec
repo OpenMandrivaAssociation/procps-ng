@@ -1,25 +1,33 @@
-%define major 3
-%define libname %mklibname procps %{major}
-%define devname %mklibname procps -d
+%define	major	3
+%define	libname	%mklibname procps %{major}
+%define	devname	%mklibname procps -d
 %bcond_with	crosscompile
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.9
-Release:	4
+Release:	5
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
 Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{version}.tar.xz
+Patch0:		vmstat-wide-not-wide-enough.patch
+Patch1:		ksh-skip-trailing-zeros.patch
+Patch2:		vmstat-timestamps.patch
+Patch3:		watch-fd-leak.patch
+Patch4:		vmstat-format-security.patch
+Patch5:		subtract-shmem-from-cached.patch
+Patch6:		sysctl-linelen-signed.patch
+Patch7:		ps-man-tracing.patch
+Patch8:		revert-cached.patch
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
-BuildRequires:	pkgconfig(libsystemd)
+BuildRequires:	pkgconfig(systemd)
 Requires:	systemd-units
 %rename		sysvinit-tools	
 %rename		procps3
 %rename		procps
-
 
 %description
 The procps package contains a set of system utilities
@@ -44,6 +52,7 @@ Development headers and library for the %{name} library.
 
 %prep
 %setup -q
+%apply_patches
 sed -e 's#${exec_prefix}/usr/bin#${bindir}#' -i configure.ac
 autoreconf -fiv
 
