@@ -71,7 +71,8 @@ export ac_cv_func_realloc_0_nonnull=yes
 	--enable-skill \
 	--enable-sigwinch \
 	--with-systemd \
-	--enable-oomem
+	--enable-oomem \
+	--enable-w-from
 
 %make
 
