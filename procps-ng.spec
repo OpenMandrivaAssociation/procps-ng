@@ -69,6 +69,7 @@ export ac_cv_func_realloc_0_nonnull=yes
 	--disable-kill \
 	--enable-wide-percent \
 	--enable-skill \
+	--enable-sigwinch \
 	--with-systemd
 
 %make
