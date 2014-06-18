@@ -67,6 +67,7 @@ export ac_cv_func_realloc_0_nonnull=yes
 	--disable-static \
 	--enable-watch8bit \
 	--disable-kill \
+	--enable-wide-percent \
 	--with-systemd
 
 %make
