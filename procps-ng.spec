@@ -70,7 +70,8 @@ export ac_cv_func_realloc_0_nonnull=yes
 	--enable-wide-percent \
 	--enable-skill \
 	--enable-sigwinch \
-	--with-systemd
+	--with-systemd \
+	--enable-oomem
 
 %make
 
