@@ -100,7 +100,9 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 %{_bindir}/pmap
 %{_bindir}/pwdx
 %{_bindir}/pkill
+%{_bindir}/skill
 %{_bindir}/slabtop
+%{_bindir}/snice
 %{_bindir}/tload
 %{_bindir}/top
 %{_bindir}/uptime
