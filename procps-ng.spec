@@ -24,6 +24,7 @@ BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(systemd)
+BuildRequires:	pkgconfig(libsystemd-login)
 Requires:	systemd-units
 %rename		sysvinit-tools	
 %rename		procps3
