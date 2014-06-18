@@ -68,6 +68,7 @@ export ac_cv_func_realloc_0_nonnull=yes
 	--enable-watch8bit \
 	--disable-kill \
 	--enable-wide-percent \
+	--enable-skill \
 	--with-systemd
 
 %make
