@@ -81,7 +81,7 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 
 %find_lang %{name}
 	
-%files -f %{name}.lng
+%files -f %{name}.lang
 %doc NEWS AUTHORS
 %doc top/README.top Documentation/FAQ Documentation/BUGS
 /bin/free
