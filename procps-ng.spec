@@ -79,7 +79,9 @@ ln -s /bin/pidof %{buildroot}/sbin
 mv %{buildroot}%{_libdir}/libprocps.so.%{major}* %{buildroot}/%{_lib}
 ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/libprocps.so
 
-%files
+%find_lang %{name}
+	
+%files -f %{name}.lng
 %doc NEWS AUTHORS
 %doc top/README.top Documentation/FAQ Documentation/BUGS
 /bin/free
@@ -101,6 +103,7 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 %{_bindir}/w
 %{_bindir}/watch
 %{_mandir}/man1/*.1*
+%{_mandir}/man3/*.3*
 %{_mandir}/man5/*.5*
 %{_mandir}/man8/*.8*
 
