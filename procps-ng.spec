@@ -11,15 +11,6 @@ License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
 Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{version}.tar.xz
-Patch0:		vmstat-wide-not-wide-enough.patch
-Patch1:		ksh-skip-trailing-zeros.patch
-Patch2:		vmstat-timestamps.patch
-Patch3:		watch-fd-leak.patch
-Patch4:		vmstat-format-security.patch
-Patch5:		subtract-shmem-from-cached.patch
-Patch6:		sysctl-linelen-signed.patch
-Patch7:		ps-man-tracing.patch
-Patch8:		revert-cached.patch
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
