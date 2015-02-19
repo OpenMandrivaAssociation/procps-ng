@@ -1,12 +1,12 @@
-%define	major	3
-%define	libname	%mklibname procps %{major}
-%define	devname	%mklibname procps -d
-%bcond_with	crosscompile
+%define	major 3
+%define	libname %mklibname procps %{major}
+%define	devname %mklibname procps -d
+%bcond_with crosscompile
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
-Version:	3.3.9
-Release:	7
+Version:	3.3.10
+Release:	1
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
@@ -63,7 +63,7 @@ export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_realloc_0_nonnull=yes
 %endif
 
-%configure2_5x \
+%configure \
 	--sbindir=/sbin \
 	--disable-static \
 	--enable-watch8bit \
