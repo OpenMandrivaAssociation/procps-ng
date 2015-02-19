@@ -1,4 +1,4 @@
-%define	major 3
+%define	major 4
 %define	libname %mklibname procps %{major}
 %define	devname %mklibname procps -d
 %bcond_with crosscompile
@@ -16,7 +16,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(libsystemd-login)
 BuildRequires:	pkgconfig(libsystemd)
-Requires:	systemd-units
 %rename		sysvinit-tools	
 %rename		procps3
 %rename		procps
