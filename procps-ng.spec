@@ -1,12 +1,12 @@
-%define	major 4
+%define	major 5
 %define	libname %mklibname procps %{major}
 %define	devname %mklibname procps -d
 %bcond_with crosscompile
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
-Version:	3.3.10
-Release:	3
+Version:	3.3.11
+Release:	1
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
@@ -83,7 +83,7 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 	
 %files -f %{name}.lang
 %doc NEWS AUTHORS
-%doc top/README.top Documentation/FAQ Documentation/BUGS
+%doc Documentation/FAQ Documentation/bugs.md
 /bin/free
 /bin/pidof
 /bin/ps
