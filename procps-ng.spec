@@ -6,7 +6,7 @@
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.11
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
@@ -16,7 +16,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(libsystemd-login)
 BuildRequires:	pkgconfig(libsystemd)
-%rename		sysvinit-tools	
+%rename		sysvinit-tools
 %rename		procps3
 %rename		procps
 
@@ -80,7 +80,7 @@ mv %{buildroot}%{_libdir}/libprocps.so.%{major}* %{buildroot}/%{_lib}
 ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/libprocps.so
 
 %find_lang %{name}
-	
+
 %files -f %{name}.lang
 %doc NEWS AUTHORS
 %doc Documentation/FAQ Documentation/bugs.md
