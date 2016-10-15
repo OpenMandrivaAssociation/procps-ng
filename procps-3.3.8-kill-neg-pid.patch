@@ -1,0 +1,24 @@
+diff --git a/skill.c b/skill.c
+index 3621040..3e19306 100644
+--- a/skill.c
++++ b/skill.c
+@@ -444,7 +444,7 @@ static void __attribute__ ((__noreturn__))
+ 	if (signo < 0)
+ 		signo = SIGTERM;
+ 
+-	opterr=0; /* suppress errors on -123 */
++	opterr = 0; /* suppress errors on -123 */
+ 	while (loop == 1 && (i = getopt_long(argc, argv, "l::Ls:hV", longopts, NULL)) != -1)
+ 		switch (i) {
+ 		case 'l':
+@@ -484,7 +484,9 @@ static void __attribute__ ((__noreturn__))
+ 				exitvalue = EXIT_FAILURE;
+ 			    exit(exitvalue);
+ 			}
+-			loop=0;
++			/* We need to back off by one since getopt() ate the -PID */
++			--optind;
++			loop = 0;
+ 			break;
+ 		default:
+ 			kill_usage(stderr);
