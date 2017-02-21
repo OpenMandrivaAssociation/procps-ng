@@ -1,0 +1,78 @@
+diff -Naur procps-ng-3.3.10.orig/proc/sysinfo.c procps-ng-3.3.10/proc/sysinfo.c
+--- procps-ng-3.3.10.orig/proc/sysinfo.c	2014-09-23 13:40:36.000000000 +0200
++++ procps-ng-3.3.10/proc/sysinfo.c	2016-01-14 13:46:42.710000000 +0100
+@@ -36,6 +36,9 @@
+ #include <netinet/in.h>  /* htons */
+ #endif
+
++#include <link.h>
++#include <elf.h>
++
+ long smp_num_cpus;     /* number of CPUs */
+ long page_bytes;       /* this architecture's page size */
+
+@@ -249,14 +252,58 @@
+
+ extern char** environ;
+
+-/* for ELF executables, notes are pushed before environment and args */
+-static unsigned long find_elf_note(unsigned long findme){
++static unsigned long find_elf_note(unsigned long type)
++{
++  ElfW(auxv_t) auxv_struct;
++  ElfW(auxv_t) *auxv_temp;
++  FILE *fd;
++  int i;
++  static ElfW(auxv_t) *auxv = NULL;
+   unsigned long *ep = (unsigned long *)environ;
+-  while(*ep++);
+-  while(*ep){
+-    if(ep[0]==findme) return ep[1];
+-    ep+=2;
++
++  if(!auxv) {
++
++    fd = fopen("/proc/self/auxv", "rb");
++
++    if(!fd) {  // can't open auxv? that could be caused by euid change
++               // ... and we need to fall back to the old and unsafe
++               // ... method that doesn't work when calling library
++               // ... functions with dlopen -> FIXME :(
++
++      while(*ep++);  // for ELF executables, notes are pushed
++      while(*ep){    // ... before environment and args
++        if(ep[0]==type) return ep[1];
++        ep+=2;
++      }
++      return NOTE_NOT_FOUND;
++    }
++
++    auxv = (ElfW(auxv_t) *) malloc(getpagesize());
++    if (!auxv) {
++      perror("malloc");
++      exit(EXIT_FAILURE);
++    }
++
++    i = 0;
++    do {
++      fread(&auxv_struct, sizeof(ElfW(auxv_t)), 1, fd);
++      auxv[i] = auxv_struct;
++      i++;
++    } while (auxv_struct.a_type != AT_NULL);
++
++    fclose(fd);
++
+   }
++
++  auxv_temp = auxv;
++  i = 0;
++  do {
++    if(auxv_temp[i].a_type == type) {
++      return (unsigned long)auxv_temp[i].a_un.a_val;
++    }
++    i++;
++  } while (auxv_temp[i].a_type != AT_NULL);
++
+   return NOTE_NOT_FOUND;
+ }
+
