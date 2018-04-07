@@ -1,18 +1,17 @@
-%define	major 6
-%define	libname %mklibname procps %{major}
-%define	devname %mklibname procps -d
+%define major 6
+%define libname %mklibname procps %{major}
+%define devname %mklibname procps -d
 %bcond_with crosscompile
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
-Version:	3.3.12
-Release:	3
+Version:	3.3.13
+Release:	1
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
 Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{version}.tar.xz
 Patch0:		procps-3.3.8-kill-neg-pid.patch
-Patch1:		procps-ng-3.3.10-find_elf_note-memory-error-fix.patch
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
@@ -25,21 +24,21 @@ BuildRequires:	pkgconfig(libsystemd)
 The procps package contains a set of system utilities
 which provide system information.
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	Main libary for %{name}
 Group:		System/Libraries
 License:	LGPLv2+
 
-%description -n	%{libname}
+%description -n %{libname}
 Main library for %{name}.
 
-%package -n	%{devname}
+%package -n %{devname}
 Summary:	Development files for %{name}
 Group:		Development/C
 License:	LGPLv2+
 Requires:	%{libname} = %{version}-%{release}
 
-%description -n	%{devname}
+%description -n %{devname}
 Development headers and library for the %{name} library.
 
 %prep
@@ -116,4 +115,3 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 %{_includedir}/proc/*.h
 %{_libdir}/libprocps.so
 %{_libdir}/pkgconfig/libprocps.pc
-
