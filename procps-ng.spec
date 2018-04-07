@@ -12,7 +12,6 @@ Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
 Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{version}.tar.xz
 Patch0:		procps-3.3.8-kill-neg-pid.patch
-Patch1:		procps-ng-3.3.10-find_elf_note-memory-error-fix.patch
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
