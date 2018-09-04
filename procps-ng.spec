@@ -6,7 +6,7 @@
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.15
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
@@ -81,8 +81,6 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 %find_lang %{name}
 
 %files -f %{name}.lang
-%doc NEWS AUTHORS
-%doc Documentation/FAQ Documentation/bugs.md
 /bin/free
 /bin/pidof
 /bin/ps
@@ -110,6 +108,8 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 /%{_lib}/libprocps.so.%{major}*
 
 %files -n %{devname}
+%doc NEWS AUTHORS
+%doc Documentation/FAQ Documentation/bugs.md
 %dir %{_includedir}/proc
 %{_includedir}/proc/*.h
 %{_libdir}/libprocps.so
