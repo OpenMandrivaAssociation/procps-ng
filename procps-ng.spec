@@ -78,6 +78,8 @@ ln -s /bin/pidof %{buildroot}/sbin
 mv %{buildroot}%{_libdir}/libprocps.so.%{major}* %{buildroot}/%{_lib}
 ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/libprocps.so
 
+rm -rf %{buildroot}%{_docdir}/%{name}
+
 %find_lang %{name}
 
 %files -f %{name}.lang
