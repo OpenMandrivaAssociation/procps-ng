@@ -6,7 +6,7 @@
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.15
-Release:	3
+Release:	4
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
@@ -15,6 +15,7 @@ BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(libsystemd)
+BuildRequires:	systemd-macros
 %rename		sysvinit-tools
 %rename		procps3
 %rename		procps
@@ -41,8 +42,8 @@ Requires:	%{libname} = %{version}-%{release}
 Development headers and library for the %{name} library.
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
+
 sed -e 's#${exec_prefix}/usr/bin#${bindir}#' -i configure.ac
 autoreconf -fiv
 
@@ -64,10 +65,10 @@ export ac_cv_func_realloc_0_nonnull=yes
 	--enable-oomem \
 	--enable-w-from
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 mkdir %{buildroot}/{bin,%{_lib}}
 mv %{buildroot}%{_bindir}/free %{buildroot}/bin
