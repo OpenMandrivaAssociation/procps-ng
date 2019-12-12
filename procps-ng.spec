@@ -1,4 +1,4 @@
-%define major 7
+%define major 8
 %define libname %mklibname procps %{major}
 %define devname %mklibname procps -d
 %bcond_with crosscompile
@@ -6,8 +6,8 @@
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
-Version:	3.3.15
-Release:	5
+Version:	3.3.16
+Release:	1
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
