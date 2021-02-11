@@ -6,7 +6,7 @@
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
-Version:	3.3.16
+Version:	3.3.17
 Release:	1
 License:	GPLv2+
 Group:		Monitoring
@@ -43,7 +43,7 @@ Requires:	%{libname} = %{version}-%{release}
 Development headers and library for the %{name} library.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n procps-%{version}
 
 sed -e 's#${exec_prefix}/usr/bin#${bindir}#' -i configure.ac
 autoreconf -fiv
@@ -82,7 +82,7 @@ ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/li
 
 rm -rf %{buildroot}%{_docdir}/%{name}
 
-%find_lang %{name}
+%find_lang %{name} --with-man --all-name
 
 %files -f %{name}.lang
 /bin/free
@@ -92,6 +92,7 @@ rm -rf %{buildroot}%{_docdir}/%{name}
 /sbin/sysctl
 %{_bindir}/pgrep
 %{_bindir}/pmap
+%{_bindir}/pwait
 %{_bindir}/pwdx
 %{_bindir}/pkill
 %{_bindir}/skill
