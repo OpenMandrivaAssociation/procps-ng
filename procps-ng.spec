@@ -16,7 +16,7 @@ BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(libsystemd)
-BuildRequires:	systemd-macros
+BuildRequires:	systemd-rpm-macros
 %rename		sysvinit-tools
 %rename		procps3
 %rename		procps
