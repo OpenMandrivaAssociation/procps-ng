@@ -7,11 +7,14 @@
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.17
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
 Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{version}.tar.xz
+Patch1:		https://src.fedoraproject.org/rpms/procps-ng/raw/rawhide/f/pwait-to-pidwait.patch
+Patch2:		https://src.fedoraproject.org/rpms/procps-ng/raw/rawhide/f/covscan-findings.patch
+Patch3:		https://src.fedoraproject.org/rpms/procps-ng/raw/rawhide/f/sysctl-hyphen-param.patch
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
@@ -55,7 +58,6 @@ export ac_cv_func_realloc_0_nonnull=yes
 %endif
 
 %configure \
-	--sbindir=/sbin \
 	--disable-static \
 	--enable-watch8bit \
 	--disable-kill \
@@ -64,53 +66,37 @@ export ac_cv_func_realloc_0_nonnull=yes
 	--enable-sigwinch \
 	--with-systemd \
 	--enable-oomem \
-	--enable-w-from
+	--enable-w-from \
+	--enable-pidwait
 
 %make_build
 
 %install
 %make_install
 
-mkdir %{buildroot}/{bin,%{_lib}}
-mv %{buildroot}%{_bindir}/free %{buildroot}/bin
-mv %{buildroot}%{_bindir}/ps %{buildroot}/bin
-mv %{buildroot}%{_bindir}/pidof %{buildroot}/bin
-ln -s /bin/pidof %{buildroot}/sbin
-
-mv %{buildroot}%{_libdir}/libprocps.so.%{major}* %{buildroot}/%{_lib}
-ln -srf %{buildroot}/%{_lib}/libprocps.so.%{major}.*.* %{buildroot}%{_libdir}/libprocps.so
+mkdir -p %{buildroot}/{bin,sbin}
+for i in free ps pidof; do
+    ln -s %{_bindir}/$i %{buildroot}/bin/$i
+done
+ln -s %{_bindir}/pidof %{buildroot}/sbin/pidof
+ln -s %{_bindir}/pidof %{buildroot}/%{_sbindir}/pidof
+ln -s %{_bindir}/sysctl %{buildroot}/sbin/sysctl
 
 rm -rf %{buildroot}%{_docdir}/%{name}
 
 %find_lang %{name} --with-man --all-name
 
 %files -f %{name}.lang
-/bin/free
-/bin/pidof
-/bin/ps
-/sbin/pidof
-/sbin/sysctl
-%{_bindir}/pgrep
-%{_bindir}/pmap
-%{_bindir}/pwait
-%{_bindir}/pwdx
-%{_bindir}/pkill
-%{_bindir}/skill
-%{_bindir}/slabtop
-%{_bindir}/snice
-%{_bindir}/tload
-%{_bindir}/top
-%{_bindir}/uptime
-%{_bindir}/vmstat
-%{_bindir}/w
-%{_bindir}/watch
-%{_mandir}/man1/*.1*
-%{_mandir}/man3/*.3*
-%{_mandir}/man5/*.5*
-%{_mandir}/man8/*.8*
+/bin/*
+/sbin/*
+%{_sbindir}/*
+%{_bindir}/*
+%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man5/*.5*
+%doc %{_mandir}/man8/*.8*
 
 %files -n %{libname}
-/%{_lib}/libprocps.so.%{major}*
+%{_libdir}/libprocps.so.%{major}*
 
 %files -n %{devname}
 %doc NEWS AUTHORS
@@ -119,3 +105,4 @@ rm -rf %{buildroot}%{_docdir}/%{name}
 %{_includedir}/proc/*.h
 %{_libdir}/libprocps.so
 %{_libdir}/pkgconfig/libprocps.pc
+%doc %{_mandir}/man3/*.3*
