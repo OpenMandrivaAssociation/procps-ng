@@ -7,7 +7,7 @@
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	3.3.17
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
@@ -80,7 +80,7 @@ for i in free ps pidof; do
 done
 ln -s %{_bindir}/pidof %{buildroot}/sbin/pidof
 ln -s %{_bindir}/pidof %{buildroot}/%{_sbindir}/pidof
-ln -s %{_bindir}/sysctl %{buildroot}/sbin/sysctl
+ln -s %{_sbindir}/sysctl %{buildroot}/sbin/sysctl
 
 rm -rf %{buildroot}%{_docdir}/%{name}
 
