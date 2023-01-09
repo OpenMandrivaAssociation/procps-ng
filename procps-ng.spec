@@ -1,13 +1,13 @@
 %define major 0
-%define libname %mklibname proc-2
-%define devname %mklibname proc-2 -d
+%define libname %mklibname proc2_ %{major}
+%define devname %mklibname proc2 -d
 %bcond_with crosscompile
 %global optflags %{optflags} -Oz
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
 Version:	4.0.2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://sourceforge.net/projects/procps-ng/
@@ -31,6 +31,7 @@ Summary:	Main libary for %{name}
 Group:		System/Libraries
 License:	LGPLv2+
 Obsoletes:	%{mklibname procps 8} < %{EVRD}
+Obsoletes:	%{mklibname proc-2} < %{EVRD}
 
 %description -n %{libname}
 Main library for %{name}.
@@ -41,6 +42,7 @@ Group:		Development/C
 License:	LGPLv2+
 Requires:	%{libname} = %{version}-%{release}
 Obsoletes:	%{mklibname -d procps} < %{EVRD}
+Obsoletes:	%{mklibname -d proc-2} < %{EVRD}
 
 %description -n %{devname}
 Development headers and library for the %{name} library.
