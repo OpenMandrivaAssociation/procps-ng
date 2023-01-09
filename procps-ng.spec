@@ -6,7 +6,7 @@
 
 Summary:	Utilities for monitoring your system and processes on your system
 Name:		procps-ng
-Version:	4.0.1
+Version:	4.0.2
 Release:	1
 License:	GPLv2+
 Group:		Monitoring
@@ -18,8 +18,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd-rpm-macros
-# FIXME building with clang fails on an initializer element not being constant
-BuildRequires:	gcc
 %rename		sysvinit-tools
 %rename		procps3
 %rename		procps
@@ -59,7 +57,6 @@ export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_realloc_0_nonnull=yes
 %endif
 
-export CC=gcc
 %configure \
 	--disable-static \
 	--enable-watch8bit \
@@ -88,12 +85,11 @@ rm -rf %{buildroot}%{_docdir}/%{name}
 %doc %{_mandir}/man8/*.8*
 
 %files -n %{libname}
-%{_libdir}/libproc-2.so.%{major}*
+%{_libdir}/libproc2.so.%{major}*
 
 %files -n %{devname}
 %doc NEWS AUTHORS
-%doc Documentation/FAQ Documentation/bugs.md
-%{_includedir}/procps
-%{_libdir}/libproc-2.so
-%{_libdir}/pkgconfig/libproc-2.pc
+%{_includedir}/libproc2
+%{_libdir}/libproc2.so
+%{_libdir}/pkgconfig/libproc2.pc
 %doc %{_mandir}/man3/*.3*
