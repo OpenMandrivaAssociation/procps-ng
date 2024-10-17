@@ -10,7 +10,7 @@ Version:	4.0.4
 Release:	1
 License:	GPLv2+
 Group:		Monitoring
-Url:		http://sourceforge.net/projects/procps-ng/
+Url:		https://sourceforge.net/projects/procps-ng/
 # Also: https://gitlab.com/procps-ng/procps
 Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{version}.tar.xz
 BuildRequires:	libtool
