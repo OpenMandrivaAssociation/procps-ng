@@ -13,6 +13,11 @@ Group:		Monitoring
 Url:		https://sourceforge.net/projects/procps-ng/
 # Also: https://gitlab.com/procps-ng/procps
 Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{version}.tar.xz
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
