@@ -1,5 +1,5 @@
-%define major 0
-%define libname %mklibname proc2_ %{major}
+%define major 1
+%define libname %mklibname proc2
 %define devname %mklibname proc2 -d
 %bcond_with crosscompile
 %global optflags %{optflags} -Oz
@@ -15,10 +15,8 @@ Url:		https://sourceforge.net/projects/procps-ng/
 Source0:	http://downloads.sourceforge.net/project/procps-ng/Production/%{name}-%{version}.tar.xz
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool-base
 BuildRequires:	slibtool
 BuildRequires:	make
-BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	pkgconfig(libsystemd)
@@ -37,6 +35,7 @@ Group:		System/Libraries
 License:	LGPLv2+
 Obsoletes:	%{mklibname procps 8} < %{EVRD}
 Obsoletes:	%{mklibname proc-2} < %{EVRD}
+Obsoletes:	%{mklibname proc2_ 0} < %{EVRD}
 
 %description -n %{libname}
 Main library for %{name}.
@@ -45,7 +44,7 @@ Main library for %{name}.
 Summary:	Development files for %{name}
 Group:		Development/C
 License:	LGPLv2+
-Requires:	%{libname} = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
 Obsoletes:	%{mklibname -d procps} < %{EVRD}
 Obsoletes:	%{mklibname -d proc-2} < %{EVRD}
 
@@ -56,7 +55,7 @@ Development headers and library for the %{name} library.
 %autosetup -p1
 
 sed -e 's#${exec_prefix}/usr/bin#${bindir}#' -i configure.ac
-autoreconf -fiv
+LIBTOOLIZE=slibtoolize autoreconf -fiv
 
 %build
 %if %{with crosscompile}
